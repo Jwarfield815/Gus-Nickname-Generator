@@ -1,0 +1,183 @@
+html, body {
+  min-height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Psych";
+}
+
+body {
+  padding: 30px;
+  background-image: linear-gradient(135deg, #5dac4d 0%, rgb(40, 112, 23) 100%);
+  box-sizing: border-box;
+}
+
+#vertAlign {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#name {
+  margin-top: 20%;
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+#names {
+  margin-top: 20px;
+}
+
+#linkContainer {
+  display: inline;
+}
+
+#links li {
+  display: inline;
+  font-size: 1.5em;
+  font-family: 'Psych';
+  margin: auto 15px;
+}
+
+#another {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  color: #99C624;
+  font-family: 'Psych';
+  font-size: 24px;
+  font-weight: 100;
+  padding: 20px;
+  background-color: #FFFFFF;
+  box-shadow: 1px 1px 20px 0px #000000;
+  -webkit-box-shadow: 1px 1px 20px 0px #000000;
+  -moz-box-shadow: 1px 1px 20px 0px #000000;
+  border: solid #337FED 1px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#another:hover {
+  background: #CCCCCC;
+  border: solid #FFFFFF 1px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+#another:focus, button:focus {
+  outline: 0px;
+}
+
+.select-box {
+	position: relative;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	font-size: 18px;
+	color: #60666d;
+}
+
+@media (min-width: 768px) {
+	.select-box {
+		width: 70%;
+   }
+}
+
+@media (min-width: 992px) {
+	.select-box {
+		width: 50%;
+   }
+}
+
+@media (min-width: 1200px) {
+	.select-box {
+		width: 30%;
+   }
+}
+
+.select-box__current {
+	position: relative;
+	box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	outline: none;
+}
+
+.select-box__current:focus + .select-box__list {
+	opacity: 1;
+	animation-name: none;
+}
+
+.select-box__current:focus + .select-box__list .select-box__option {
+	cursor: pointer;
+}
+
+.select-box__current:focus .select-box__icon {
+	transform: translateY(-50%) rotate(180deg);
+}
+
+.select-box__icon {
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%);
+	width: 20px;
+	opacity: 0.3;
+	transition: 0.2s ease;
+}
+
+.select-box__value {
+	display: flex;
+}
+
+.select-box__input {
+	display: none;
+}
+
+.select-box__input:checked + .select-box__input-text {
+	display: block;
+}
+
+.select-box__input-text {
+	display: none;
+	width: 100%;
+	margin: 0;
+	padding: 15px;
+	background-color: #fff;
+}
+
+.select-box__list {
+	position: absolute;
+	width: 100%;
+	padding: 0;
+	list-style: none;
+	opacity: 0;
+	animation-name: HideList;
+	animation-duration: 0.5s;
+	animation-delay: 0.5s;
+	animation-fill-mode: forwards;
+	animation-timing-function: step-start;
+	box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.select-box__option {
+	display: block;
+	padding: 0px 15px;
+	background-color: #fff;
+}
+
+.select-box__option:hover, .select-box__option:focus {
+	color: #546c84;
+	background-color: #fbfbfb;
+}
+
+@keyframes HideList {
+	from {
+		transform: scaleY(1);
+   }
+	to {
+		transform: scaleY(0);
+   }
+}
