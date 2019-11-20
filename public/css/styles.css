@@ -5,6 +5,16 @@ html, body {
   font-family: "Psych";
 }
 
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+#nameDetails {
+  font-size: 2em;
+  margin-top: 3%;
+}
+
 body {
   padding: 30px;
   background-image: linear-gradient(135deg, #5dac4d 0%, rgb(40, 112, 23) 100%);
@@ -19,13 +29,18 @@ body {
 }
 
 #name {
-  margin-top: 20%;
+  margin-top: 10%;
   margin-bottom: 10px;
   font-size: 2em;
 }
 
 #names {
   margin-top: 20px;
+  font-size: 2em;
+}
+
+#names:hover {
+  color: #333333;
 }
 
 #linkContainer {
@@ -39,7 +54,12 @@ body {
   margin: auto 15px;
 }
 
+.headerLinks:hover {
+  color: #333333;
+}
+
 #another {
+  width: 290px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;

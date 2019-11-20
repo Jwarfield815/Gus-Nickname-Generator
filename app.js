@@ -22,4 +22,16 @@ app.get('/names', (req, res) => {
   res.render('viewNames.hbs');
 });
 
+app.get('/names/:name', (req, res) => {
+  res.render('nameDetails.hbs', {name: req.params.name});
+});
+
+app.get('/faqs', (req, res) => {
+  res.render('faqs.hbs');
+});
+
+app.get('/about', (req, res) => {
+  res.render('about.hbs');
+});
+
 app.listen(3000);
