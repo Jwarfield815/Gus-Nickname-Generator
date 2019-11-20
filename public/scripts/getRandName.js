@@ -6,7 +6,7 @@ function getRandName(allNames) {
 
   displayName.textContent = name;
   displayName.href = `/names/${name}`;
-  displayName.addEventListener('mouseover', () => {displayName.style.color = '#333333';});
-  displayName.addEventListener('mouseleave', () => {displayName.style.color = '#000000';});
+  displayName.addEventListener('mouseover', () => { displayName.style.color = '#333333'; });
+  displayName.addEventListener('mouseleave', () => { displayName.style.color = '#000000'; });
   document.getElementById('another').textContent = 'Get Another';
 }
