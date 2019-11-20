@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="/css/styles.css" />
         <script src="/scripts/defNames.js"></script>
         <script src="/scripts/changeFont.js"></script>
+        <script src="/scripts/changeQuery.js"></script>
     </head>
     
     <body>
@@ -16,8 +17,15 @@
             const container = document.getElementById('names');
             container.textContent += '';
             allNames.forEach((name) => {
-                container.innerHTML += `<a id="nameLink" href="/names/${encodeURIComponent(name.name)}"><p>${name.name}</p></a>`;
+                container.innerHTML += `<a
+                    class="nameLink"
+                    onmouseover="localStorage.scrollpos = window.scrollY"
+                    href="/names/${encodeURIComponent(name.name)}">
+                        <p>${name.name}</p>
+                    </a>`;
             });
+            let scrollPos = parseInt(window.location.search.replace('?', ''));
+            window.scrollTo(0, scrollPos || 0);
         </script>
     </body>
 </html>

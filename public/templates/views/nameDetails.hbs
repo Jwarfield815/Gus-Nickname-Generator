@@ -12,7 +12,17 @@
         {{>header}}
         <div id="content">
             <div id="nameDetails"></div>
+            <center id="backButtonContainer"></center>
         </div>
-        <script>findName('{{name}}', allNames)</script>
+        <script>
+            findName('{{name}}', allNames);
+            document.getElementById('backButtonContainer').innerHTML =
+                `<button
+                    id="back"
+                    onclick="location.href='/names?${localStorage.scrollpos}'"
+                >
+                    Back
+                </button>`
+        </script>
     </body>
 </html>

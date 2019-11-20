@@ -23,7 +23,7 @@ app.get('/names', (req, res) => {
 });
 
 app.get('/names/:name', (req, res) => {
-  res.render('nameDetails.hbs', {name: req.params.name});
+  res.render('nameDetails.hbs', { name: req.params.name });
 });
 
 app.get('/faqs', (req, res) => {

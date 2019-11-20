@@ -10,6 +10,34 @@ a {
   text-decoration: none;
 }
 
+#hidden {
+  margin-top: 20px;
+  display: none;
+  font-size: 2em;
+}
+
+#info {
+  margin-top: 20px;
+  font-size: 2em;
+}
+
+#titleHead {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.question, .answer {
+  font-size: 1.5em;
+}
+
+.answer {
+  margin-bottom: 17px;
+}
+
+.nameLink:hover {
+  color: #333333;
+}
+
 #nameDetails {
   font-size: 2em;
   margin-top: 3%;
@@ -32,6 +60,7 @@ body {
   margin-top: 10%;
   margin-bottom: 10px;
   font-size: 2em;
+  text-align: center;
 }
 
 #names {
@@ -47,18 +76,25 @@ body {
   display: inline;
 }
 
+li {
+  margin: auto 15px;
+}
+
 #links li {
   display: inline;
   font-size: 1.5em;
   font-family: 'Psych';
-  margin: auto 15px;
+}
+
+#links {
+  padding: 0px;
 }
 
 .headerLinks:hover {
   color: #333333;
 }
 
-#another {
+#another, #back {
   width: 290px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -78,7 +114,7 @@ body {
   cursor: pointer;
 }
 
-#another:hover {
+#another:hover, #back:hover {
   background: #CCCCCC;
   border: solid #FFFFFF 1px;
   -webkit-border-radius: 20px;
@@ -87,7 +123,11 @@ body {
   text-decoration: none;
 }
 
-#another:focus, button:focus {
+#back {
+  margin-top: 50px;
+}
+
+button:focus {
   outline: 0px;
 }
 
