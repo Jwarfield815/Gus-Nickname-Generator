@@ -24,10 +24,18 @@ function findName(name, allNames) {
   let madLib = '';
   for (let i = 0; i < allNames.length; i += 1) {
     if (allNames[i].name === name) {
-      madLib += `The ${makeMadLib(nameSyns)} "${allNames[i].name}" is
-        ${makeMadLib(adverbs)} ${makeMadLib(givenSyns)} ${makeMadLib(gus)} in
-        episode ${allNames[i].episodeNum} of season ${allNames[i].season}, which is
-        ${makeMadLib(namedSyns)}: ${allNames[i].episode}`;
+      madLib += `
+        The ${makeMadLib(nameSyns)}
+        "${allNames[i].name}"
+        is ${makeMadLib(adverbs)}
+        ${makeMadLib(givenSyns)}
+        ${makeMadLib(gus)}
+        in episode ${allNames[i].episodeNum
+          || '...oh, I don\'t know which episode, but I do know that it\'s '}
+        from season ${allNames[i].season || '...oh, I don\'t know which season'},
+        which is ${makeMadLib(namedSyns)}:
+        ${allNames[i].episode || '...oh, I don\'t know what the episode is named'}`;
+
       document.getElementById('nameDetails').textContent = madLib;
     }
   }
