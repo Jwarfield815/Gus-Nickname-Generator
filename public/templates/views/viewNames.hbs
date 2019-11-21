@@ -18,7 +18,7 @@
             allNames.forEach((name) => {
                 container.innerHTML += `<a
                     class="nameLink"
-                    onmouseover="localStorage.scrollpos = window.scrollY"
+                    onmouseover="sessionStorage.scrollpos = window.scrollY"
                     href="/names/${encodeURIComponent(name.name)}">
                         <p>${name.name}</p>
                     </a>`;

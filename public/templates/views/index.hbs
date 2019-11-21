@@ -3,8 +3,8 @@
     <head>
         <link rel="stylesheet" href="/css/fonts.css" />
         <link rel="stylesheet" href="/css/styles.css" />
-        <script defer src="/scripts/defNames.js"></script>
-        <script defer src="/scripts/getRandName.js"></script>
+        <script src="/scripts/defNames.js"></script>
+        <script src="/scripts/getRandName.js"></script>
         <script src="/scripts/changeFont.js"></script>
     </head>
 
@@ -13,9 +13,11 @@
         <div id="content">
             <div id="vertAlign">
                 <a id="name">Welcome to the officially unofficial Gus nickname generator!<br>
-                Click the button below to get started</a>
+                    Click the button below to get started
+                </a>
                 <button onClick="getRandName(allNames)" id="another">Generate a Nickname</button>
             </div>
         </div>
+        <script>changeFont(sessionStorage.selectedFont)</script>
     </body>
 </html>
