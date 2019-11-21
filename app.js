@@ -4,11 +4,11 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 const publicDirectoryPath = path.join(__dirname, './public');
 const viewsPath = path.join(__dirname, './public/templates/views');
 const partialsPath = path.join(__dirname, './public/templates/partials');
-const port = 'https://warfield-gus-names-temp.herokuapp.com/';
 
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
@@ -36,4 +36,4 @@ app.get('/about', (req, res) => {
   res.render('about.hbs');
 });
 
-app.listen(port || 3000);
+app.listen(port);
