@@ -30,7 +30,7 @@ window.onload = () => {
         isMobile = true;
       }
     })(navigator.userAgent || navigator.vendor || window.opera);
-    console.log(isMobile);
+    document.getElementById('isMobile').textContent = isMobile;
     return isMobile;
   };
 
