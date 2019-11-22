@@ -4,7 +4,6 @@
     -moz-border-radius: 20px;
     border-radius: 20px;
     color: #99C624;
-    font-family: 'Psych';
     font-size: 24px;
     font-weight: 100;
     padding: 20px;
@@ -33,4 +32,8 @@
   
   button:focus {
     outline: 0px;
+  }
+
+  button {
+    font-family: inherit;
   }

@@ -65,6 +65,7 @@ window.onload = () => {
       mobileSelect += `<option
         id="${trueName}"
         value="${trueName}"
+        style="font-family: ${trueName}"
         ${trueName === sessionStorage.selectedFont ? 'selected' : ''}
         >${nameNormalized}
       </option>`;
