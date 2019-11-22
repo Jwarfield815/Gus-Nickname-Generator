@@ -1,0 +1,36 @@
+#another, #back {
+    width: 290px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #99C624;
+    font-family: 'Psych';
+    font-size: 24px;
+    font-weight: 100;
+    padding: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 20px 0px #000000;
+    -webkit-box-shadow: 1px 1px 20px 0px #000000;
+    -moz-box-shadow: 1px 1px 20px 0px #000000;
+    border: solid #337FED 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  #another:hover, #back:hover {
+    background: #CCCCCC;
+    border: solid #FFFFFF 1px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-decoration: none;
+  }
+  
+  #back {
+    margin-top: 50px;
+  }
+  
+  button:focus {
+    outline: 0px;
+  }

@@ -1,0 +1,132 @@
+@media only screen and (max-width: 600px) {
+    html, body {
+      min-height: 100%;
+      margin: 0px;
+      padding: 0px;
+      font-family: "Psych";
+    }
+    
+    a {
+      color: #000000;
+      text-decoration: underline;
+    }
+    
+    #hidden {
+      margin-top: 20px;
+      display: none;
+      font-size: 2em;
+    }
+    
+    #info {
+      margin-top: 20px;
+      font-size: 4em;
+    }
+    
+    #titleHead {
+      font-size: 6em;
+      margin-bottom: 10px;
+    }
+    
+    .question, .answer {
+      font-size: 2.5em;
+    }
+    
+    .answer {
+      margin-bottom: 17px;
+    }
+    
+    .nameLink:hover {
+      color: #000000;
+    }
+    
+    #nameDetails {
+      font-size: 2em;
+      margin-top: 3%;
+    }
+    
+    body {
+      padding: 30px;
+      background-image: linear-gradient(135deg, #5dac4d 0%, rgb(40, 112, 23) 100%);
+      box-sizing: border-box;
+    }
+    
+    #vertAlign {
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    #name {
+      margin-top: 30%;
+      margin-bottom: 10px;
+      font-size: 2em;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    #names {
+      margin-top: 20px;
+      font-size: 2em;
+    }
+    
+    #names:hover {
+      color: #000000;
+    }
+    
+    #linkContainer {
+      display: inline;
+    }
+    
+    li {
+      margin: auto;
+    }
+    
+    #links li {
+      display: inline;
+      font-size: 1.5em;
+      font-family: 'Psych';
+    }
+    
+    #links {
+      padding: 0px;
+    }
+    
+    .headerLinks:hover {
+      color: #000000;
+    }
+    
+    #another, #back {
+      width: 400px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+      color: #99C624;
+      font-family: 'Psych';
+      font-size: 24px;
+      font-weight: 100;
+      padding: 20px;
+      background-color: #FFFFFF;
+      box-shadow: 1px 1px 20px 0px #000000;
+      -webkit-box-shadow: 1px 1px 20px 0px #000000;
+      -moz-box-shadow: 1px 1px 20px 0px #000000;
+      border: solid #337FED 1px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+    
+    #another:hover, #back:hover {
+      background: #ffffff;
+      border: solid #FFFFFF 1px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+      text-decoration: none;
+    }
+    
+    #back {
+      margin-top: 50px;
+      width: 400px;
+    }
+  }
