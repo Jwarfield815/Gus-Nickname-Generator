@@ -61,7 +61,7 @@ window.onload = () => {
       psychId = i;
     }
 
-    if (isMobile || window.innerWidth < 600) {
+    if (isMobile) {
       mobileSelect += `<option
         id="${trueName}"
         value="${trueName}"
@@ -81,7 +81,7 @@ window.onload = () => {
     }
   }
 
-  if (isMobile || window.innerWidth < 600) {
+  if (isMobile) {
     mobileSelect += '</select>';
     document.getElementsByClassName('mobileSelectContainer').item(0).innerHTML = mobileSelect;
   } else {
@@ -92,7 +92,7 @@ window.onload = () => {
     document.getElementsByClassName('select-box__list').item(0).innerHTML = list;
   }
 
-  if (hasBeenChecked === false && (isMobile || window.innerWidth < 600)) {
+  if (hasBeenChecked === false && isMobile) {
     const psych = document.getElementById('Psych');
     psych.selected = true;
     changeFont(psych.value);
