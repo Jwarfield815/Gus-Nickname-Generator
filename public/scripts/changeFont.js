@@ -5,6 +5,12 @@
 function changeFont(font) {
   document.body.style.fontFamily = font;
   sessionStorage.selectedFont = font;
+
+  if (font === 'MegaMan_2') {
+    document.getElementsByClassName('mobile').item(1).style.fontSize = '0.8em';
+  } else {
+    document.getElementsByClassName('mobile').item(1).style.fontSize = '1em';
+  }
 }
 
 window.onload = () => {
@@ -18,7 +24,7 @@ window.onload = () => {
   let hasBeenChecked = false;
   let nameNormalized = '';
   let trueName = '';
-  let mobileSelect = '<select class="mobileSelect" onclick="changeFont(this.value)">';
+  let mobileSelect = '<select class="mobileSelect" onchange="changeFont(this.value)">';
 
   // checkes if the user is using a mobile device/browser
   ((a) => {
