@@ -1,21 +1,41 @@
-/* eslint-disable max-len */
 /* eslint-disable no-useless-escape */
-/* eslint-disable no-unused-vars */
-// TODO: get mobile working
-function changeFont(font) {
+function changeFont(font, size) {
   document.body.style.fontFamily = font;
   sessionStorage.selectedFont = font;
+  document.body.style.fontSize = size;
+  sessionStorage.size = size;
+}
 
-  if (font === 'MegaMan_2') {
-    document.getElementsByClassName('mobile').item(1).style.fontSize = '0.8em';
-  } else {
-    document.getElementsByClassName('mobile').item(1).style.fontSize = '1em';
+function convertSize(size) {
+  switch (size) {
+    case '100':
+      return '0.6em';
+    case '200':
+      return '0.7em';
+    case '300':
+      return '0.8em';
+    case '400':
+      return '0.9em';
+    case '500':
+      return '1em';
+    case '600':
+      return '1.1em';
+    case '700':
+      return '1.2em';
+    case '800':
+      return '1.3em';
+    case '900':
+      return '1.4em';
+    default:
+      return '1em';
   }
 }
 
 window.onload = () => {
-  const fontsObj = document.styleSheets[0].cssRules;// grabs font stylesheet
-  const fontsArray = Object.keys(fontsObj).map((i) => fontsObj[i]);// converts stylesheet into array of rules
+  // grabs font stylesheet
+  const fontsObj = document.styleSheets[0].cssRules;
+  // converts stylesheet into array of rules
+  const fontsArray = Object.keys(fontsObj).map((i) => fontsObj[i]);
 
   let isMobile = false;
   let current = '';
@@ -24,7 +44,8 @@ window.onload = () => {
   let hasBeenChecked = false;
   let nameNormalized = '';
   let trueName = '';
-  let mobileSelect = '<select class="mobileSelect" onchange="changeFont(this.value)">';
+  let size = '';
+  let mobileSelect = '<select class="mobileSelect" onchange="changeFont(this.value, this.title)">';
 
   // checkes if the user is using a mobile device/browser
   ((a) => {
@@ -57,9 +78,11 @@ window.onload = () => {
     nameNormalized = fontsArray[i].style.fontFamily.replace(/["']/g, '').replace(/_/g, ' ');
     // name that matches the stylesheet
     trueName = fontsArray[i].style.fontFamily.replace(/[^\w\s]/g, '');
+    size = fontsArray[i].style.fontWeight;
+    size = convertSize(size);
 
     if (trueName === sessionStorage.selectedFont) {
-      changeFont(trueName);
+      changeFont(trueName, size);
       hasBeenChecked = true;
     }
 
@@ -68,17 +91,29 @@ window.onload = () => {
     }
 
     if (isMobile) {
-      mobileSelect += `<option
+      mobileSelect += `
+      <option
         id="${trueName}"
         value="${trueName}"
         style="font-family: ${trueName}"
+        title="${size}"
         ${trueName === sessionStorage.selectedFont ? 'selected' : ''}
-        >${nameNormalized}
+      >
+        ${nameNormalized}
       </option>`;
     } else {
-      current += `<div class="select-box__value"><input class="select-box__input"
-        type="radio" id="${i}" value="${trueName}" name="Ben"
-        onChange="changeFont(this.value)" ${trueName === sessionStorage.selectedFont ? 'checked' : ''}>
+      current += `
+      <div class="select-box__value">
+        <input
+          class="select-box__input"
+          type="radio"
+          id="${i}"
+          title="${size}"
+          value="${trueName}"
+          name="Ben"
+          onChange="changeFont(this.value, this.title);"
+          ${trueName === sessionStorage.selectedFont ? 'checked' : ''}
+        >
         <p class="select-box__input-text">${nameNormalized}</p>
       </div>`;
 
@@ -101,10 +136,10 @@ window.onload = () => {
   if (hasBeenChecked === false && isMobile) {
     const psych = document.getElementById('Psych');
     psych.selected = true;
-    changeFont(psych.value);
+    changeFont(psych.value, psych.title);
   } else if (hasBeenChecked === false) {
     const psych = document.getElementById(psychId);
     psych.checked = true;
-    changeFont(psych.value);
+    changeFont(psych.value, psych.title);
   }
 };

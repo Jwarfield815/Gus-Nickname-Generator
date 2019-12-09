@@ -2,7 +2,7 @@
     font-family: 'Real_Hylian';
     src: url('../fonts/SSAncientHylian.woff2') format('woff2'),
         url('../fonts/SSAncientHylian.woff') format('woff');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -10,7 +10,7 @@
     font-family: 'MegaMan_2';
     src: url('../fonts/MegaMan-2.woff2') format('woff2'),
         url('../fonts/MegaMan-2.woff') format('woff');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
 }
 
@@ -18,7 +18,7 @@
     font-family: 'Ferbtastic';
     src: url('../fonts/Ferbtastic.woff2') format('woff2'),
         url('../fonts/Ferbtastic.woff') format('woff');
-    font-weight: normal;
+    font-weight: 800;
     font-style: normal;
 }
 
@@ -26,7 +26,7 @@
     font-family: 'Psych';
     src: url('../fonts/AmericanTypewriter.woff2') format('woff2'),
         url('../fonts/AmericanTypewriter.woff') format('woff');
-    font-weight: bold;
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -34,7 +34,7 @@
     font-family: 'Fortnite';
     src: url('../fonts/BurbankBigCondensed-Black.woff2') format('woff2'),
         url('../fonts/BurbankBigCondensed-Black.woff') format('woff');
-    font-weight: bold;
+    font-weight: 800;
     font-style: normal;
 }
 
@@ -42,7 +42,7 @@
     font-family: 'Fake_Hylian';
     src: url('../fonts/TPHylian-GCNRegular.woff2') format('woff2'),
         url('../fonts/TPHylian-GCNRegular.woff') format('woff');
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -50,7 +50,7 @@
     font-family: 'Discord';
     src: url('../fonts/UniSansHeavyCAPS.woff2') format('woff2'),
         url('../fonts/UniSansHeavyCAPS.woff') format('woff');
-    font-weight: bold;
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -58,7 +58,7 @@
     font-family: 'Zelda';
     src: url('../fonts/HyliaSerifBeta-Regular.woff2') format('woff2'),
         url('../fonts/HyliaSerifBeta-Regular.woff') format('woff');
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -66,7 +66,7 @@
     font-family: 'Top_Ramen';
     src: url('../fonts/CooperFiveOpti-Black.woff2') format('woff2'),
         url('../fonts/CooperFiveOpti-Black.woff') format('woff');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
