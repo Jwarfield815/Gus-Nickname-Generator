@@ -1,4 +1,3 @@
-// TODO: make fonts persist across pages
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
