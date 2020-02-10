@@ -8,27 +8,38 @@ function changeFont(font, size) {
 
 function convertSize(size) {
   switch (size) {
-    case '100':
+    case 100:
       return '0.6em';
-    case '200':
+    case 200:
       return '0.7em';
-    case '300':
+    case 300:
       return '0.8em';
-    case '400':
+    case 400:
       return '0.9em';
-    case '500':
+    case 500:
       return '1em';
-    case '600':
+    case 600:
       return '1.1em';
-    case '700':
+    case 700:
       return '1.2em';
-    case '800':
+    case 800:
       return '1.3em';
-    case '900':
+    case 900:
       return '1.4em';
     default:
+      // eslint-disable-next-line no-console
+      console.warn('default case reached, this probably means the incorrect var type was passed in');
       return '1em';
   }
+}
+
+function getTitle(className, val) {
+  const select = document.getElementsByClassName(className).item(0);
+  const result = select.find((child) => {
+    console.log(child);
+    return child.title === val;
+  });
+  console.log('result', result);
 }
 
 window.onload = () => {
@@ -36,16 +47,17 @@ window.onload = () => {
   const fontsObj = document.styleSheets[0].cssRules;
   // converts stylesheet into array of rules
   const fontsArray = Object.keys(fontsObj).map((i) => fontsObj[i]);
+  const parsedCssArray = [];
 
   let isMobile = false;
+  let hasBeenChecked = false;
   let current = '';
   let list = '';
   let psychId = '';
-  let hasBeenChecked = false;
   let nameNormalized = '';
   let trueName = '';
   let size = '';
-  let mobileSelect = '<select class="mobileSelect" onchange="changeFont(this.value, this.title)">';
+  let mobileSelect = '<select class="mobileSelect" onchange="console.log(getTitle(this.class, this.value))';
 
   // checkes if the user is using a mobile device/browser
   ((a) => {
@@ -55,19 +67,32 @@ window.onload = () => {
   })(navigator.userAgent || navigator.vendor || window.opera);
 
   for (let i = 0; i < fontsArray.length; i += 1) {
-    const unparsedStyle = fontsArray[i].style.cssText;
-    const [, removeKey] = unparsedStyle.split('font-family: ');
-    fontsArray[i].style.fontFamily = removeKey.slice(0, removeKey.indexOf(';'));
+    let parsedCss = fontsArray[i].cssText.replace('@font-face {', '').split(';');
+    parsedCss = parsedCss.slice(0, parsedCss.length - 1);
+
+    for (let j = 0; j < parsedCss.length; j += 1) {
+      if (parsedCss[j].includes('src') || parsedCss[j].includes('font-style') || parsedCss[j].includes('font-family')) {
+        parsedCss[j] = parsedCss[j].replace(/["']/g, '\\"').replace(/:[\s]*(['"])?(.+)(['"])?/g, ':"$2"');
+      }
+      parsedCss[j] = parsedCss[j].trim()
+        .replace('-', '')
+        .replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2":')
+        .replace(';', '');
+    }
+
+    parsedCss = `{${parsedCss}}`;
+    parsedCss = JSON.parse(parsedCss);
+    parsedCssArray.push(parsedCss);
   }
 
   // sorts the fonts alphabetically
-  fontsArray.sort((a, b) => {
-    if (a.style.fontFamily.replace(/["']/g, '').replace(/_/g, ' ')
-        < b.style.fontFamily.replace(/["']/g, '').replace(/_/g, ' ')) {
+  parsedCssArray.sort((a, b) => {
+    if (a.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')
+        < b.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')) {
       return -1;
     }
-    if (a.style.fontFamily.replace(/["']/g, '').replace(/_/g, ' ')
-        > b.style.fontFamily.replace(/["']/g, '').replace(/_/g, ' ')) {
+    if (a.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')
+        > b.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')) {
       return 1;
     }
     return 0;
@@ -75,10 +100,10 @@ window.onload = () => {
 
   for (let i = 0; i < fontsArray.length; i += 1) {
     // normalize the name
-    nameNormalized = fontsArray[i].style.fontFamily.replace(/["']/g, '').replace(/_/g, ' ');
+    nameNormalized = parsedCssArray[i].fontfamily.trim().replace(/["']/g, '').replace(/_/g, ' ');
     // name that matches the stylesheet
-    trueName = fontsArray[i].style.fontFamily.replace(/[^\w\s]/g, '');
-    size = fontsArray[i].style.fontWeight;
+    trueName = parsedCssArray[i].fontfamily.replace(/[^\w\s]/g, '');
+    size = parsedCssArray[i].fontweight;
     size = convertSize(size);
 
     if (trueName === sessionStorage.selectedFont) {
