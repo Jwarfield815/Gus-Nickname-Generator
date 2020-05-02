@@ -33,13 +33,18 @@ function convertSize(size) {
   }
 }
 
-function getTitle(className, val) {
-  const select = document.getElementsByClassName(className).item(0);
-  const result = select.find((child) => {
-    console.log(child);
-    return child.title === val;
-  });
-  console.log('result', result);
+// eslint-disable-next-line no-unused-vars
+function getSize(className, size) {
+  const selectChildren = document.getElementsByClassName(className).item(0).children;
+  let result = '';
+
+  for (let i = 0; i < selectChildren.length; i += 1) {
+    console.log(size);
+    if (selectChildren.item(i).dataset.size === size) {
+      result = selectChildren.item(i);
+      console.log(result);
+    }
+  }
 }
 
 window.onload = () => {
@@ -57,7 +62,7 @@ window.onload = () => {
   let nameNormalized = '';
   let trueName = '';
   let size = '';
-  let mobileSelect = '<select class="mobileSelect" onchange="console.log(getTitle(this.class, this.value))';
+  let mobileSelect = '<select class="mobileSelect" onchange="console.log(this.dataset.size)">';
 
   // checkes if the user is using a mobile device/browser
   ((a) => {
@@ -121,7 +126,7 @@ window.onload = () => {
         id="${trueName}"
         value="${trueName}"
         style="font-family: ${trueName}"
-        title="${size}"
+        data-size="${size}"
         ${trueName === sessionStorage.selectedFont ? 'selected' : ''}
       >
         ${nameNormalized}
@@ -133,10 +138,10 @@ window.onload = () => {
           class="select-box__input"
           type="radio"
           id="${i}"
-          title="${size}"
+          data-size="${size}"
           value="${trueName}"
           name="Ben"
-          onChange="changeFont(this.value, this.title);"
+          onChange="changeFont(this.value, this.dataset.size);"
           ${trueName === sessionStorage.selectedFont ? 'checked' : ''}
         >
         <p class="select-box__input-text">${nameNormalized}</p>
@@ -161,10 +166,10 @@ window.onload = () => {
   if (hasBeenChecked === false && isMobile) {
     const psych = document.getElementById('Psych');
     psych.selected = true;
-    changeFont(psych.value, psych.title);
+    changeFont(psych.value, psych.dataset.size);
   } else if (hasBeenChecked === false) {
     const psych = document.getElementById(psychId);
     psych.checked = true;
-    changeFont(psych.value, psych.title);
+    changeFont(psych.value, psych.dataset.size);
   }
 };
