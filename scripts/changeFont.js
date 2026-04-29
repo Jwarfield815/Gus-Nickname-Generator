@@ -1,4 +1,7 @@
 /* eslint-disable no-useless-escape */
+// eslint-disable-next-line no-var
+var isMobile = false;
+
 function changeFont(font, size) {
   document.body.style.fontFamily = font;
   sessionStorage.selectedFont = font;
@@ -36,25 +39,23 @@ function convertSize(size) {
 // eslint-disable-next-line no-unused-vars
 function getSize(className, size) {
   const selectChildren = document.getElementsByClassName(className).item(0).children;
+  // eslint-disable-next-line no-unused-vars
   let result = '';
 
   for (let i = 0; i < selectChildren.length; i += 1) {
-    console.log(size);
     if (selectChildren.item(i).dataset.size === size) {
       result = selectChildren.item(i);
-      console.log(result);
     }
   }
 }
 
-window.onload = () => {
+window.addEventListener('load', () => {
   // grabs font stylesheet
   const fontsObj = document.styleSheets[0].cssRules;
   // converts stylesheet into array of rules
   const fontsArray = Object.keys(fontsObj).map((i) => fontsObj[i]);
   const parsedCssArray = [];
 
-  let isMobile = false;
   let hasBeenChecked = false;
   let current = '';
   let list = '';
@@ -63,6 +64,8 @@ window.onload = () => {
   let trueName = '';
   let size = '';
   let mobileSelect = '<select class="mobileSelect" onchange="console.log(this.dataset.size)">';
+
+  isMobile = false;
 
   // checkes if the user is using a mobile device/browser
   ((a) => {
@@ -172,4 +175,4 @@ window.onload = () => {
     psych.checked = true;
     changeFont(psych.value, psych.dataset.size);
   }
-};
+});

@@ -1,13 +1,16 @@
-const nameSyns = [
+/* eslint-disable no-var */
+var nameSyns = [
   'name', 'nickname', 'alias', 'cognomen', 'moniker', 'psuedonym', 'autonym',
   'handle', 'epithet', 'label', 'designation', 'eponym',
 ];
-const adverbs = [
+
+var adverbs = [
   'lovingly', 'affectionately', 'humorously', 'effortlessly', 'quickly', 'vainly',
   'recklessly', 'deliberately', 'gracefully', 'elegantly', 'mysteriously', 'warmly',
   'vivaciously', 'unabashedly', 'carelessly', 'fervently', 'energetically',
 ];
-const givenSyns = [
+
+var givenSyns = [
   'given to', 'awarded to', 'granted to', 'bestowed upon', 'bequethed to',
   'endowed upon', 'gifted to', 'layed upon', 'provided to', 'imparted to',
 ];
@@ -22,6 +25,8 @@ function makeMadLib(words) {
 // eslint-disable-next-line no-unused-vars
 function findName(name, allNames) {
   let madLib = '';
+  sessionStorage.personalInfo = name;
+
   for (let i = 0; i < allNames.length; i += 1) {
     if (allNames[i].name === name) {
       madLib += `

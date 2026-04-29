@@ -1,5 +1,6 @@
+/* eslint-disable no-var */
 /* eslint-disable no-unused-vars */
-let first = true;
+var first = true;
 
 function getRandName(allNames) {
   const index = Math.floor(Math.random() * (allNames.length - 0));
@@ -8,7 +9,7 @@ function getRandName(allNames) {
   const anotherButton = document.getElementById('another');
 
   displayName.textContent = name;
-  displayName.href = `/names/${name}`;
+  displayName.href = `nameDetails.html?${encodeURIComponent(name)}`;
   displayName.addEventListener('mouseover', () => { displayName.style.color = '#333333'; });
   displayName.addEventListener('mouseleave', () => { displayName.style.color = '#000000'; });
   anotherButton.textContent = 'Get Another';

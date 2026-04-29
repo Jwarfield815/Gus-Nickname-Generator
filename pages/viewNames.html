@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/fonts.css" />
+        <link rel="stylesheet" href="/css/styles.css" />
+        <script src="/scripts/defNames.js"></script>
+        <script src="/scripts/changeFont.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div id="header">
+            <div id="linkContainer">
+                <center>
+                    <ul class="desktop" id="links">
+                        <li><a class="headerLinks" href="/">Home Page</a></li>
+                        <li><a class="headerLinks" href="viewNames.html">All Names</a></li><br class="mobile">
+                        <li><a class="headerLinks" href="faqs.html">FAQs</a></li>
+                        <li><a class="headerLinks" href="about.html">About</a></li>
+                        <li><a class="headerLinks" href="random.html">Weird Stuff</a></li>
+                    </ul>
+                    <ul class="mobile" id="links">
+                        <li id="first">
+                            <div>
+                                <a id="first" class="headerLinks" href="/">Home Page</a>
+                                <a class="headerLinks" href="viewNames.html">All Names</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <a id="first" class="headerLinks" href="faqs.html">FAQs</a>
+                                <a class="headerLinks" href="about.html">About</a>
+                                <a class="headerLinks" href="random.html">Weird Stuff</a>
+                            </div>
+                        </li>
+                    </ul>
+                </center>
+                
+            </div>
+            <div class="select-box">
+                <div class="select-box__current" tabindex="1"></div>
+                <ul class="select-box__list"></ul>
+            </div>
+            <center>
+                <div class="mobileSelectContainer"></div>
+            </center>
+        </div>
+        <div id="content">
+            <div id="names"></div>
+        </div>
+        <script>
+            const container = document.getElementById('names');
+            container.textContent += '';
+            allNames.forEach((name) => {
+                container.innerHTML += `<a
+                    class="nameLink"
+                    onmouseover="sessionStorage.scrollpos = window.scrollY"
+                    href="/names/${encodeURIComponent(name.name)}">
+                        <p>${name.name}</p>
+                    </a>`;
+            });
+            let scrollPos = parseInt(window.location.search.replace('?', ''));
+            window.scrollTo(0, scrollPos || 0);
+        </script>
+    </body>
+</html>

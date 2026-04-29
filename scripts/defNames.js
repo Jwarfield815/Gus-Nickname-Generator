@@ -1,6 +1,7 @@
+/* eslint-disable no-var */
 /* eslint-disable no-unused-vars */
 
-const allNames = [
+var allNames = [
   {
     name: 'Adewale Akinnuoye-Agbaje',
     episode: 'One, Maybe Two Ways Out',
