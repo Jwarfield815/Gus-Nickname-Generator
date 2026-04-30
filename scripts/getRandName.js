@@ -1,5 +1,3 @@
-/* eslint-disable no-var */
-/* eslint-disable no-unused-vars */
 var first = true;
 
 function getRandName(allNames) {
@@ -7,6 +5,8 @@ function getRandName(allNames) {
   const name = allNames[index].name || allNames[1].name;
   const displayName = document.getElementById('name');
   const anotherButton = document.getElementById('another');
+
+  sessionStorage.scrollpos = -1;
 
   displayName.textContent = name;
   displayName.href = `nameDetails.html?${encodeURIComponent(name)}`;

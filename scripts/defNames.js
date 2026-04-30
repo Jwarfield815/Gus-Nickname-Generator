@@ -1,6 +1,3 @@
-/* eslint-disable no-var */
-/* eslint-disable no-unused-vars */
-
 var allNames = [
   {
     name: 'Adewale Akinnuoye-Agbaje',

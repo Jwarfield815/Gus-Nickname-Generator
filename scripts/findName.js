@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 var nameSyns = [
   'name', 'nickname', 'alias', 'cognomen', 'moniker', 'psuedonym', 'autonym',
   'handle', 'epithet', 'label', 'designation', 'eponym',
@@ -22,7 +21,6 @@ function makeMadLib(words) {
   return words[randNum];
 }
 
-// eslint-disable-next-line no-unused-vars
 function findName(name, allNames) {
   let madLib = '';
   sessionStorage.personalInfo = name;
@@ -44,4 +42,34 @@ function findName(name, allNames) {
       document.getElementById('nameDetails').textContent = madLib;
     }
   }
+}
+
+function setBackButton() {
+  let currName = window.location.search.replace("?","");
+  let backButton = document.createElement("button");
+  let returnLocation = "/";
+
+  if (sessionStorage.scrollpos != -1) { returnLocation = `/viewNames.html?${sessionStorage.scrollpos}` }
+  findName(decodeURIComponent(currName), allNames);
+
+  backButton.id = "back";
+  backButton.onclick = function goBackFromNameDetails() { window.location.href = returnLocation; };
+  backButton.textContent = "Back";
+  document.getElementById('backButtonContainer').appendChild(backButton);
+}
+
+function getAllNames() {
+  const container = document.getElementById('names');
+  allNames.forEach((name) => {
+      let nameLink = document.createElement("a");
+      nameLink.classList.add("nameLink");
+      nameLink.onmouseover = function() { sessionStorage.scrollpos = window.scrollY; }
+      nameLink.href = `/nameDetails.html?${encodeURIComponent(name.name)}`;
+      nameLink.textContent = name.name;
+
+      container.appendChild(nameLink);
+  });
+  
+  let scrollPos = parseInt(window.location.search.replace('?', ''));
+  window.scrollTo(0, scrollPos || 0);
 }

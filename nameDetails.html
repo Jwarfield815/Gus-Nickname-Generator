@@ -3,9 +3,9 @@
     <head>
         <link rel="stylesheet" href="/css/fonts.css" />
         <link rel="stylesheet" href="/css/styles.css" />
-        <script src="/scripts/defNames.js"></script>
-        <script src="/scripts/changeFont.js"></script>
-        <script src="/scripts/findName.js"></script>
+        <script type="text/javascript" src="/scripts/defNames.js"></script>
+        <script type="text/javascript" src="/scripts/changeFont.js"></script>
+        <script type="text/javascript" src="/scripts/findName.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
@@ -50,15 +50,6 @@
             <div id="nameDetails"></div>
             <center id="backButtonContainer"></center>
         </div>
-        <script>
-            findName('{{name}}', allNames);
-            document.getElementById('backButtonContainer').innerHTML =
-                `<button
-                    id="back"
-                    onclick="location.href='/names?${sessionStorage.scrollpos}'"
-                >
-                    Back
-                </button>`
-        </script>
+        <script type="text/javascript">setBackButton()</script>
     </body>
 </html>

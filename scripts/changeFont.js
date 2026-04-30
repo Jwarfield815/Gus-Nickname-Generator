@@ -1,5 +1,3 @@
-/* eslint-disable no-useless-escape */
-// eslint-disable-next-line no-var
 var isMobile = false;
 
 function changeFont(font, size) {
@@ -9,7 +7,7 @@ function changeFont(font, size) {
   sessionStorage.size = size;
 }
 
-function convertSize(size) {
+/* function convertSize(size) {
   switch (size) {
     case 100:
       return '0.6em';
@@ -30,16 +28,13 @@ function convertSize(size) {
     case 900:
       return '1.4em';
     default:
-      // eslint-disable-next-line no-console
       console.warn('default case reached, this probably means the incorrect var type was passed in');
       return '1em';
   }
-}
+} */
 
-// eslint-disable-next-line no-unused-vars
 function getSize(className, size) {
   const selectChildren = document.getElementsByClassName(className).item(0).children;
-  // eslint-disable-next-line no-unused-vars
   let result = '';
 
   for (let i = 0; i < selectChildren.length; i += 1) {
