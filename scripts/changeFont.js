@@ -1,5 +1,3 @@
-var isMobile = false;
-
 function changeFont(font, size) {
   document.body.style.fontFamily = font;
   sessionStorage.selectedFont = font;
@@ -7,60 +5,20 @@ function changeFont(font, size) {
   sessionStorage.size = size;
 }
 
-/* function convertSize(size) {
-  switch (size) {
-    case 100:
-      return '0.6em';
-    case 200:
-      return '0.7em';
-    case 300:
-      return '0.8em';
-    case 400:
-      return '0.9em';
-    case 500:
-      return '1em';
-    case 600:
-      return '1.1em';
-    case 700:
-      return '1.2em';
-    case 800:
-      return '1.3em';
-    case 900:
-      return '1.4em';
-    default:
-      console.warn('default case reached, this probably means the incorrect var type was passed in');
-      return '1em';
-  }
-} */
-
-function getSize(className, size) {
-  const selectChildren = document.getElementsByClassName(className).item(0).children;
-  let result = '';
-
-  for (let i = 0; i < selectChildren.length; i += 1) {
-    if (selectChildren.item(i).dataset.size === size) {
-      result = selectChildren.item(i);
-    }
-  }
-}
-
 window.addEventListener('load', () => {
-  // grabs font stylesheet
-  const fontsObj = document.styleSheets[0].cssRules;
-  // converts stylesheet into array of rules
+  // grabs font stylesheet and converts stylesheet into array of each @font-face rule
+  let fontsObj;
+  for (const sheet of document.styleSheets) {
+    if (sheet.href.endsWith("fonts.css")) { fontsObj = sheet.cssRules; }
+  }
   const fontsArray = Object.keys(fontsObj).map((i) => fontsObj[i]);
-  const parsedCssArray = [];
 
   let hasBeenChecked = false;
-  let current = '';
-  let list = '';
   let psychId = '';
-  let nameNormalized = '';
-  let trueName = '';
-  let size = '';
-  let mobileSelect = '<select class="mobileSelect" onchange="console.log(this.dataset.size)">';
-
-  isMobile = false;
+  let mobileSelectionBox = document.createElement("select");
+  let selectBox = document.querySelector('.select-box__current');
+  let selectBoxList = document.querySelector('.select-box__list');
+  let isMobile = false;
 
   // checkes if the user is using a mobile device/browser
   ((a) => {
@@ -70,97 +28,81 @@ window.addEventListener('load', () => {
   })(navigator.userAgent || navigator.vendor || window.opera);
 
   for (let i = 0; i < fontsArray.length; i += 1) {
-    let parsedCss = fontsArray[i].cssText.replace('@font-face {', '').split(';');
-    parsedCss = parsedCss.slice(0, parsedCss.length - 1);
+    let fontInfo = /font-family: "(.+)";.+font-weight: (.+);/.exec(fontsArray[i].cssText);
+    let trueName = fontInfo[1];
+    let nameNormalized = trueName.replace("_", " ");
+    let size = fontInfo[2];
 
-    for (let j = 0; j < parsedCss.length; j += 1) {
-      if (parsedCss[j].includes('src') || parsedCss[j].includes('font-style') || parsedCss[j].includes('font-family')) {
-        parsedCss[j] = parsedCss[j].replace(/["']/g, '\\"').replace(/:[\s]*(['"])?(.+)(['"])?/g, ':"$2"');
-      }
-      parsedCss[j] = parsedCss[j].trim()
-        .replace('-', '')
-        .replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2":')
-        .replace(';', '');
-    }
-
-    parsedCss = `{${parsedCss}}`;
-    parsedCss = JSON.parse(parsedCss);
-    parsedCssArray.push(parsedCss);
-  }
-
-  // sorts the fonts alphabetically
-  parsedCssArray.sort((a, b) => {
-    if (a.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')
-        < b.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')) {
-      return -1;
-    }
-    if (a.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')
-        > b.fontfamily.replace(/["']/g, '').replace(/_/g, ' ')) {
-      return 1;
-    }
-    return 0;
-  });
-
-  for (let i = 0; i < fontsArray.length; i += 1) {
-    // normalize the name
-    nameNormalized = parsedCssArray[i].fontfamily.trim().replace(/["']/g, '').replace(/_/g, ' ');
-    // name that matches the stylesheet
-    trueName = parsedCssArray[i].fontfamily.replace(/[^\w\s]/g, '');
-    size = parsedCssArray[i].fontweight;
-    size = convertSize(size);
-
+    
+    if (nameNormalized === 'Psych') { psychId = i; }
     if (trueName === sessionStorage.selectedFont) {
       changeFont(trueName, size);
       hasBeenChecked = true;
     }
 
-    if (nameNormalized === 'Psych') {
-      psychId = i;
-    }
-
     if (isMobile) {
-      mobileSelect += `
-      <option
-        id="${trueName}"
-        value="${trueName}"
-        style="font-family: ${trueName}"
-        data-size="${size}"
-        ${trueName === sessionStorage.selectedFont ? 'selected' : ''}
-      >
-        ${nameNormalized}
-      </option>`;
-    } else {
-      current += `
-      <div class="select-box__value">
-        <input
-          class="select-box__input"
-          type="radio"
-          id="${i}"
-          data-size="${size}"
-          value="${trueName}"
-          name="Ben"
-          onChange="changeFont(this.value, this.dataset.size);"
-          ${trueName === sessionStorage.selectedFont ? 'checked' : ''}
-        >
-        <p class="select-box__input-text">${nameNormalized}</p>
-      </div>`;
+      // create mobile dropdown
+      let option = document.createElement("option");
 
-      list += `<li><label class="select-box__option" style="font-family: ${trueName}"
-        for="${i}" aria-hidden="aria-hidden">${nameNormalized}</label></li>`;
+      option.id = trueName;
+      option.value = trueName;
+      option.style.fontFamily = trueName;
+      option.dataset.size = size;
+      option.textContent = nameNormalized;
+      if (trueName === sessionStorage.selectedFont) { option.selected = true; }
+
+      mobileSelectionBox.options.add(option, i)
+    } else {
+      // generate dropbox value items
+      let selectBoxValue = document.createElement("div");
+      let selectBoxInput = document.createElement("input");
+      let selectBoxInputText = document.createElement("p");
+
+      selectBoxValue.classList.add("select-box__value");
+
+      selectBoxInput.classList.add("select-box__input");
+      selectBoxInput.type = "radio";
+      selectBoxInput.id = i;
+      selectBoxInput.dataset.size = size;
+      selectBoxInput.value = trueName;
+      selectBoxInput.name = "Ben";
+      selectBoxInput.setAttribute("onchange", "changeFont(this.value, this.dataset.size);");
+      if (trueName === sessionStorage.selectedFont) { selectBoxInput.checked = true; }
+
+      selectBoxInputText.classList.add("select-box__input-text");
+      selectBoxInputText.textContent = nameNormalized;
+
+      selectBoxValue.appendChild(selectBoxInput);
+      selectBoxValue.appendChild(selectBoxInputText);
+      selectBox.appendChild(selectBoxValue);
+      
+      // generate dropbox list items
+      let listItem = document.createElement("li");
+      let labelForItem = document.createElement("label");
+
+      labelForItem.classList.add("select-box__option");
+      labelForItem.style.fontFamily = trueName;
+      labelForItem.htmlFor = i;
+      labelForItem.ariaHidden = "aria-hidden";
+      labelForItem.textContent = nameNormalized;
+
+      listItem.appendChild(labelForItem);
+      selectBoxList.appendChild(listItem);
     }
   }
 
-  if (isMobile) {
-    mobileSelect += '</select>';
-    document.getElementsByClassName('mobileSelectContainer').item(0).innerHTML = mobileSelect;
-  } else {
-    current += `</div><img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
-    alt="Arrow Icon" aria-hidden="true" />`;
+  if (!isMobile)  {
+    // add arrow icon to dropdown on desktop
+    let myImage = document.createElement("img");
+    myImage.classList.add("select-box__icon");
+    myImage.src = "http://cdn.onlinewebfonts.com/svg/img_295694.svg";
+    myImage.alt = "Arrow Icon";
+    myImage.ariaHidden = true;
 
-    document.getElementsByClassName('select-box__current').item(0).innerHTML = current;
-    document.getElementsByClassName('select-box__list').item(0).innerHTML = list;
+    selectBox.appendChild(myImage);
   }
 
+  // set the font to the last selected font, or set it to psych if none has been selected
   if (hasBeenChecked === false && isMobile) {
     const psych = document.getElementById('Psych');
     psych.selected = true;

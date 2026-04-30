@@ -1,4 +1,4 @@
-var nameSyns = [
+var nameSynonyms = [
   'name', 'nickname', 'alias', 'cognomen', 'moniker', 'psuedonym', 'autonym',
   'handle', 'epithet', 'label', 'designation', 'eponym',
 ];
@@ -9,12 +9,12 @@ var adverbs = [
   'vivaciously', 'unabashedly', 'carelessly', 'fervently', 'energetically',
 ];
 
-var givenSyns = [
+var givenSynonyms = [
   'given to', 'awarded to', 'granted to', 'bestowed upon', 'bequethed to',
   'endowed upon', 'gifted to', 'layed upon', 'provided to', 'imparted to',
 ];
 const gus = ['Gus', 'Burton', 'Burton Guster', 'Guster'];
-const namedSyns = ['titled', 'entitled', 'christened', 'dubbed', 'specified as'];
+const namedSynonyms = ['titled', 'entitled', 'christened', 'dubbed', 'specified as'];
 
 function makeMadLib(words) {
   const randNum = Math.floor(Math.random() * (words.length - 0));
@@ -28,15 +28,15 @@ function findName(name, allNames) {
   for (let i = 0; i < allNames.length; i += 1) {
     if (allNames[i].name === name) {
       madLib += `
-        The ${makeMadLib(nameSyns)}
+        The ${makeMadLib(nameSynonyms)}
         "${allNames[i].name}"
         is ${makeMadLib(adverbs)}
-        ${makeMadLib(givenSyns)}
+        ${makeMadLib(givenSynonyms)}
         ${makeMadLib(gus)}
         in episode ${allNames[i].episodeNum
           || '...oh, I don\'t know which episode, but I do know that it\'s '}
         from season ${allNames[i].season || '...oh, I don\'t know which season'},
-        which is ${makeMadLib(namedSyns)}:
+        which is ${makeMadLib(namedSynonyms)}:
         ${allNames[i].episode || '...oh, I don\'t know what the episode is named'}`;
 
       document.getElementById('nameDetails').textContent = madLib;
