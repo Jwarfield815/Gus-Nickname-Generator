@@ -122,8 +122,8 @@ li {
     text-wrap: nowrap;
   }
 
-  a {
-    text-decoration: underline;
+  .mobileLinksContainer a {
+    border-bottom: 2px solid black;
   }
   
   #titleHead {
