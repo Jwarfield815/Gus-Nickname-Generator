@@ -14,7 +14,7 @@
             put all javascript in their own files, don't have it in html files
             figure out what's going on with #suckit:hover
             figure out what picture was supposed to be on about page
-            Mobile font select not working
+            Remove ismobile check, do css instead, create both dropdowns, but only display one in css
     -->
 
     <body>
@@ -28,22 +28,21 @@
                         <li><a class="headerLinks" href="about.html">About</a></li>
                         <li><a class="headerLinks" href="random.html">Weird Stuff</a></li>
                     </ul>
-                    <ul class="mobile" id="links">
-                        <li id="first">
-                            <div>
-                                <a id="first" class="headerLinks" href="/">Home Page</a>
-                                <a class="headerLinks" href="viewNames.html">All Names</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <a id="first" class="headerLinks" href="faqs.html">FAQs</a>
-                                <a class="headerLinks" href="about.html">About</a>
-                                <a class="headerLinks" href="random.html">Weird Stuff</a>
-                            </div>
-                        </li>
-                    </ul>
                 </center>
+
+                <div class="mobile">
+                    <div class="mobileLinksContainer">
+                        <div class="row1">
+                            <a class="headerLinks" href="/">Home Page</a>
+                            <a class="headerLinks" href="viewNames.html">All Names</a>
+                        </div>
+                        <div class="row2">
+                            <a class="headerLinks" href="faqs.html">FAQs</a>
+                            <a class="headerLinks" href="random.html">Weird Stuff</a>
+                            <a class="headerLinks" href="about.html">About</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="select-box">
                 <div class="select-box__current" tabindex="1"></div>

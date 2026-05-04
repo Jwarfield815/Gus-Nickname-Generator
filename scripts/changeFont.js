@@ -1,10 +1,39 @@
 function changeFont(font, size) {
+  console.log(font, size);
   document.body.style.fontFamily = font;
   sessionStorage.selectedFont = font;
   document.body.style.fontSize = size;
   sessionStorage.size = size;
 }
 
+function convertSize(size) {
+  switch (size) {
+    case "100":
+      return '0.6em';
+    case "200":
+      return '0.7em';
+    case "300":
+      return '0.8em';
+    case "400":
+      return '0.9em';
+    case "500":
+      return '1em';
+    case "600":
+      return '1.1em';
+    case "700":
+      return '1.2em';
+    case "800":
+      return '1.3em';
+    case "900":
+      return '1.4em';
+    default:
+      // eslint-disable-next-line no-console
+      console.warn('default case reached, this probably means the incorrect var type was passed in');
+      return '1em';
+  }
+}
+
+// create the font dropdown, dynamically gettin fonts from the fonts.css file
 window.addEventListener('load', () => {
   // grabs font stylesheet and converts stylesheet into array of each @font-face rule
   let fontsObj;
@@ -33,10 +62,9 @@ window.addEventListener('load', () => {
     let nameNormalized = trueName.replace("_", " ");
     let size = fontInfo[2];
 
-    
     if (nameNormalized === 'Psych') { psychId = i; }
     if (trueName === sessionStorage.selectedFont) {
-      changeFont(trueName, size);
+      changeFont(trueName, convertSize(size));
       hasBeenChecked = true;
     }
 
@@ -66,7 +94,7 @@ window.addEventListener('load', () => {
       selectBoxInput.dataset.size = size;
       selectBoxInput.value = trueName;
       selectBoxInput.name = "Ben";
-      selectBoxInput.setAttribute("onchange", "changeFont(this.value, this.dataset.size);");
+      selectBoxInput.setAttribute("onchange", "changeFont(this.value, convertSize(this.dataset.size));");
       if (trueName === sessionStorage.selectedFont) { selectBoxInput.checked = true; }
 
       selectBoxInputText.classList.add("select-box__input-text");
@@ -102,14 +130,20 @@ window.addEventListener('load', () => {
     selectBox.appendChild(myImage);
   }
 
+  if (isMobile) {
+    mobileSelectionBox.onchange = function() { changeFont(this.selectedOptions.item(0).value, convertSize(this.selectedOptions.item(0).dataset.size)); }
+    mobileSelectionBox.classList.add("mobileSelect");
+    document.querySelector(".mobileSelectContainer").appendChild(mobileSelectionBox);
+  }
+
   // set the font to the last selected font, or set it to psych if none has been selected
   if (hasBeenChecked === false && isMobile) {
     const psych = document.getElementById('Psych');
     psych.selected = true;
-    changeFont(psych.value, psych.dataset.size);
+    changeFont(psych.value, convertSize(psych.dataset.size));
   } else if (hasBeenChecked === false) {
     const psych = document.getElementById(psychId);
     psych.checked = true;
-    changeFont(psych.value, psych.dataset.size);
+    changeFont(psych.value, convertSize(psych.dataset.size));
   }
 });
