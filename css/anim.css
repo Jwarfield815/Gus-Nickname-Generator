@@ -1,11 +1,23 @@
-center img {
-    width: 50%;
-    position: absolute; 
-    transform: translateX(-50%);
+.imageContainer img {
+    height: 50vw;
+    width: 50vw;
+    max-width: 500px;
+    max-height: 500px;
     transition: all 800ms;
     transform-origin: top;
 }
-#suckIt:hover{
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#suckIt {
+    transform: translateY(-100%);
+}
+
+#suckIt:hover {
     opacity: 0%;
 }
 
