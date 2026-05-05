@@ -123,7 +123,7 @@ window.addEventListener('load', () => {
     // add arrow icon to dropdown on desktop
     let myImage = document.createElement("img");
     myImage.classList.add("select-box__icon");
-    myImage.src = "http://cdn.onlinewebfonts.com/svg/img_295694.svg";
+    myImage.src = "https://cdn.onlinewebfonts.com/svg/img_295694.svg";
     myImage.alt = "Arrow Icon";
     myImage.ariaHidden = true;
 

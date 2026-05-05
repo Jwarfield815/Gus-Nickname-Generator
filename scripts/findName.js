@@ -49,7 +49,7 @@ function setBackButton() {
   let backButton = document.createElement("button");
   let returnLocation = "/";
 
-  if (sessionStorage.scrollpos != -1) { returnLocation = `/viewNames.html?${sessionStorage.scrollpos}` }
+  if (sessionStorage.scrollpos != -1) { returnLocation = `viewNames.html?${sessionStorage.scrollpos}` }
   findName(decodeURIComponent(currName), allNames);
 
   backButton.id = "back";
@@ -64,7 +64,7 @@ function getAllNames() {
       let nameLink = document.createElement("a");
       nameLink.classList.add("nameLink");
       nameLink.onmouseover = function() { sessionStorage.scrollpos = window.scrollY; }
-      nameLink.href = `/nameDetails.html?${encodeURIComponent(name.name)}`;
+      nameLink.href = `nameDetails.html?${encodeURIComponent(name.name)}`;
       nameLink.textContent = name.name;
 
       container.appendChild(nameLink);
