@@ -47,7 +47,7 @@ function findName(name, allNames) {
 function setBackButton() {
   let currName = window.location.search.replace("?","");
   let backButton = document.createElement("button");
-  let returnLocation = "/";
+  let returnLocation = "/nickname";
 
   if (sessionStorage.scrollpos != -1) { returnLocation = `viewNames.html?${sessionStorage.scrollpos}` }
   findName(decodeURIComponent(currName), allNames);
